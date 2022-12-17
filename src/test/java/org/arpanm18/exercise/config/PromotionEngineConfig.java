@@ -8,7 +8,8 @@ public class PromotionEngineConfig {
     private final PromotionEngine promotionEngine;
 
     public PromotionEngineConfig() {
-        promotionEngine = new PromotionEngineImpl();
+        UnitConfiguration unitConfiguration = new UnitConfiguration();
+        promotionEngine = new PromotionEngineImpl(unitConfiguration);
     }
 
     public PromotionEngine getPromotionEngine() {
