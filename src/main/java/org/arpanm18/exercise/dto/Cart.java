@@ -1,4 +1,4 @@
-package org.arpanm18.exercise;
+package org.arpanm18.exercise.dto;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
