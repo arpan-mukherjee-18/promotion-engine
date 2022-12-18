@@ -47,7 +47,7 @@ public class PromotionEngineTest {
     }
 
     @Test
-    void shouldApplyNItemsFixedPriceAndCombinationPricePromotionPriorCartCheckout() {
+    void shouldApplyNItemsFixedPriceAndCoupleComboPricePromotionPriorCartCheckout() {
         //given
         Cart cart = Cart.init().addItem(SkUnit.A, 3).addItem(SkUnit.B, 5).addItem(SkUnit.C, 1).addItem(SkUnit.D, 1);
         BigDecimal expectedCostAfterPromotion = BigDecimal.valueOf(280).setScale(2, RoundingMode.HALF_UP);

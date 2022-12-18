@@ -18,7 +18,8 @@ public class SimplePromotionEngine implements PromotionEngine {
 
     @Override
     public BigDecimal applyPromotion(Cart cart) {
-        return cart.getCartItems().entrySet().stream().map(this::evaluateCost).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return cart.getCartItems().entrySet().stream().filter(cartEntry -> cartEntry.getValue() > 0)
+                .map(this::evaluateCost).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     private BigDecimal evaluateCost(Map.Entry<SkUnit, Integer> cartEntry) {
