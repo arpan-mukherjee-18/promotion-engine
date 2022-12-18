@@ -32,4 +32,17 @@ public class PromotionEngineTest {
         //then
         assertEquals(expectedCostAfterPromotion, actualCostAfterPromotion);
     }
+
+    @Test
+    void shouldApplyNItemsFixedPricePromotionPriorCartCheckout() {
+        //given
+        Cart cart = Cart.init().addItem(SkUnit.A, 5).addItem(SkUnit.B, 5).addItem(SkUnit.C, 1);
+        BigDecimal expectedCostAfterPromotion = BigDecimal.valueOf(370).setScale(2, RoundingMode.HALF_UP);
+
+        //when
+        BigDecimal actualCostAfterPromotion = promotionEngineConfig.getPromotionEngine().applyPromotion(cart);
+
+        //then
+        assertEquals(expectedCostAfterPromotion, actualCostAfterPromotion);
+    }
 }
