@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class UnitConfiguration {
+public final class SimpleUnitConfiguration {
 
     private final Map<SkUnit, BigDecimal> unitPriceConfiguration;
 
-    public UnitConfiguration() {
+    public SimpleUnitConfiguration() {
         unitPriceConfiguration = new ConcurrentHashMap<>();
         unitPriceConfiguration.put(SkUnit.A, BigDecimal.valueOf(50));
         unitPriceConfiguration.put(SkUnit.B, BigDecimal.valueOf(30));

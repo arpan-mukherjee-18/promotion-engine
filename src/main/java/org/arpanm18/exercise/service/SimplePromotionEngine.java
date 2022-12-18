@@ -1,6 +1,6 @@
 package org.arpanm18.exercise.service;
 
-import org.arpanm18.exercise.config.UnitConfiguration;
+import org.arpanm18.exercise.config.SimpleUnitConfiguration;
 import org.arpanm18.exercise.dto.Cart;
 import org.arpanm18.exercise.dto.SkUnit;
 
@@ -10,10 +10,10 @@ import java.util.Map;
 
 public class SimplePromotionEngine implements PromotionEngine {
 
-    private final UnitConfiguration unitConfiguration;
+    private final SimpleUnitConfiguration simpleUnitConfiguration;
 
-    public SimplePromotionEngine(UnitConfiguration unitConfiguration) {
-        this.unitConfiguration = unitConfiguration;
+    public SimplePromotionEngine(SimpleUnitConfiguration simpleUnitConfiguration) {
+        this.simpleUnitConfiguration = simpleUnitConfiguration;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class SimplePromotionEngine implements PromotionEngine {
     }
 
     private BigDecimal evaluateCost(Map.Entry<SkUnit, Integer> cartEntry) {
-        return this.unitConfiguration.getUnitPrice(cartEntry.getKey())
+        return this.simpleUnitConfiguration.getUnitPrice(cartEntry.getKey())
                 .multiply(BigDecimal.valueOf(cartEntry.getValue())).setScale(2, RoundingMode.HALF_UP);
     }
 }
