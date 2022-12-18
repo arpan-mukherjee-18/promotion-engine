@@ -26,19 +26,18 @@ public class NunitsFixedPricePromotionEngine implements PromotionEngine {
         return promotionValue.add(nextEngine.applyPromotion(cart));
     }
 
-    private BigDecimal evaluateCost(Map.Entry<SkUnit, Integer> cartEntry) {
-        Optional<Map.Entry<Integer, BigDecimal>> promotionalPrice = nunitsFixedConfiguration.getUnitPrice(cartEntry.getKey());
-        BigDecimal priceAfterPromotion = BigDecimal.ZERO;
-        if (promotionalPrice.isPresent()) {
-            Map.Entry<Integer, BigDecimal> constraint = promotionalPrice.get();
-            if (cartEntry.getValue().compareTo(constraint.getKey()) > 0) {
-                int numberOfPromotions = cartEntry.getValue() / constraint.getKey();
-                int remaining = cartEntry.getValue() % constraint.getKey();
-                priceAfterPromotion = constraint.getValue().multiply(BigDecimal.valueOf(numberOfPromotions)).setScale(2, RoundingMode.HALF_UP);
-                cartEntry.setValue(remaining);
-            }
-        }
+    private static BigDecimal evaluateCost(Map.Entry<SkUnit, Integer> cartEntry, NUnitsFixedConfiguration.Constraint constraint) {
+        if (cartEntry.getValue().compareTo(constraint.count()) < 0) return BigDecimal.ZERO;
+        int numberOfPromotions = cartEntry.getValue() / constraint.count();
+        int remaining = cartEntry.getValue() % constraint.count();
+        BigDecimal priceAfterPromotion = constraint.price().multiply(BigDecimal.valueOf(numberOfPromotions)).setScale(2, RoundingMode.HALF_UP);
+        cartEntry.setValue(remaining);
         return priceAfterPromotion;
+    }
+
+    private BigDecimal evaluateCost(Map.Entry<SkUnit, Integer> cartEntry) {
+        Optional<NUnitsFixedConfiguration.Constraint> promotionalPrice = nunitsFixedConfiguration.getUnitPrice(cartEntry.getKey());
+        return promotionalPrice.isPresent() ? evaluateCost(cartEntry, promotionalPrice.get()) : BigDecimal.ZERO;
     }
 
 }
