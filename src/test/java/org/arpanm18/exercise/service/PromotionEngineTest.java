@@ -11,7 +11,7 @@ import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PromotionEngineTest {
+class PromotionEngineTest {
 
     private static PromotionEngineConfig promotionEngineConfig;
 
