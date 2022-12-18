@@ -8,11 +8,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 
-public class PromotionEngineImpl implements PromotionEngine {
+public class SimplePromotionEngine implements PromotionEngine {
 
     private final UnitConfiguration unitConfiguration;
 
-    public PromotionEngineImpl(UnitConfiguration unitConfiguration) {
+    public SimplePromotionEngine(UnitConfiguration unitConfiguration) {
         this.unitConfiguration = unitConfiguration;
     }
 

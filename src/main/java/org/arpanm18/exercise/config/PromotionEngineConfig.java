@@ -1,15 +1,14 @@
 package org.arpanm18.exercise.config;
 
 import org.arpanm18.exercise.service.PromotionEngine;
-import org.arpanm18.exercise.service.PromotionEngineImpl;
+import org.arpanm18.exercise.service.SimplePromotionEngine;
 
 public class PromotionEngineConfig {
 
     private final PromotionEngine promotionEngine;
 
     public PromotionEngineConfig() {
-        UnitConfiguration unitConfiguration = new UnitConfiguration();
-        promotionEngine = new PromotionEngineImpl(unitConfiguration);
+        promotionEngine = new SimplePromotionEngine(new UnitConfiguration());
     }
 
     public PromotionEngine getPromotionEngine() {
